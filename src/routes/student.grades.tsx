@@ -57,14 +57,17 @@ function GradesPage() {
               </tr>
             </thead>
             <tbody>
-              {COURSE_GRADES.map((g) => (
-                <tr key={g.codigo} className="border-b hover:bg-muted/40">
-                  <td className="py-2 font-mono">{g.codigo}</td>
-                  <td>{g.nombre}</td>
-                  <td className="font-mono font-bold">{g.nota}</td>
-                  <td><span className="rounded-full bg-success/15 px-2 py-0.5 text-xs font-semibold text-success">{g.estado}</span></td>
-                </tr>
-              ))}
+              {COURSE_GRADES.map((g) => {
+                const gradeColor = g.nota >= 90 ? "text-success" : g.nota >= 75 ? "text-secondary" : "text-warning";
+                return (
+                  <tr key={g.codigo} className="border-b hover:bg-muted/40">
+                    <td className="py-2 font-mono text-secondary font-semibold">{g.codigo}</td>
+                    <td className="font-medium">{g.nombre}</td>
+                    <td className={`font-mono font-bold text-lg ${gradeColor}`}>{g.nota}</td>
+                    <td><span className="rounded-full bg-success/15 px-2 py-0.5 text-xs font-semibold text-success">{g.estado}</span></td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </Card>
